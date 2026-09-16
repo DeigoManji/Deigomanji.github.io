@@ -10,48 +10,48 @@
 
 <style>
 :root {
-  --bg:           #FAF7FC;
-  --surface:      #F2EDF8;
-  --surface-2:    #E8DFEF;
-  --border:       #DDD5E8;
-  --text:         #1A1520;
-  --text-2:       #7A6B8A;
-  --accent:       #B85A75;
-  --accent-glow:  rgba(184,90,117,.28);
-  --note-bg:      #EDE6F5;
-  --note-border:  #C9B8DC;
-  --range-fill:   #B85A75;
-  --shadow:       0 12px 40px rgba(30,15,40,.13);
+  --bg:           #FDF9F4;
+  --surface:      #F4EDE2;
+  --surface-2:    #EAE0D4;
+  --border:       #D8CCBE;
+  --text:         #1A1008;
+  --text-2:       #8A7060;
+  --accent:       #C8102E;
+  --accent-glow:  rgba(200,16,46,.25);
+  --note-bg:      #FEF2F2;
+  --note-border:  #F0CACA;
+  --range-fill:   #C8102E;
+  --shadow:       0 12px 40px rgba(20,8,0,.12);
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg:           #16111E;
-    --surface:      #211A2A;
-    --surface-2:    #2C2438;
-    --border:       #3A3048;
-    --text:         #F0EAF5;
-    --text-2:       #9B8FAD;
-    --accent:       #E8A0BF;
-    --accent-glow:  rgba(232,160,191,.22);
-    --note-bg:      #271E35;
-    --note-border:  #4A3A5E;
-    --range-fill:   #E8A0BF;
-    --shadow:       0 12px 40px rgba(0,0,0,.45);
+    --bg:           #0C1018;
+    --surface:      #131C2A;
+    --surface-2:    #1C2838;
+    --border:       #263448;
+    --text:         #F0EAE0;
+    --text-2:       #8090A8;
+    --accent:       #E83050;
+    --accent-glow:  rgba(232,48,80,.28);
+    --note-bg:      #160E18;
+    --note-border:  #3A2030;
+    --range-fill:   #E83050;
+    --shadow:       0 12px 40px rgba(0,0,0,.5);
   }
 }
 :root[data-theme="dark"] {
-  --bg:           #16111E;
-  --surface:      #211A2A;
-  --surface-2:    #2C2438;
-  --border:       #3A3048;
-  --text:         #F0EAF5;
-  --text-2:       #9B8FAD;
-  --accent:       #E8A0BF;
-  --accent-glow:  rgba(232,160,191,.22);
-  --note-bg:      #271E35;
-  --note-border:  #4A3A5E;
-  --range-fill:   #E8A0BF;
-  --shadow:       0 12px 40px rgba(0,0,0,.45);
+  --bg:           #0C1018;
+  --surface:      #131C2A;
+  --surface-2:    #1C2838;
+  --border:       #263448;
+  --text:         #F0EAE0;
+  --text-2:       #8090A8;
+  --accent:       #E83050;
+  --accent-glow:  rgba(232,48,80,.28);
+  --note-bg:      #160E18;
+  --note-border:  #3A2030;
+  --range-fill:   #E83050;
+  --shadow:       0 12px 40px rgba(0,0,0,.5);
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -347,6 +347,36 @@ input[type="range"] {
 }
 .note-text.fade { opacity: 0; }
 
+/* ── Dedicatoria ── */
+.dedicatoria {
+  text-align: center;
+  padding: 4px 0 2px;
+}
+.dedicatoria-text {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  font-size: .95rem;
+  color: var(--text-2);
+  line-height: 1.5;
+}
+.dedicatoria-heart {
+  display: inline-block;
+  color: var(--accent);
+  font-size: 1rem;
+  margin: 0 3px;
+  animation: heartbeat 2.2s ease-in-out infinite;
+}
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  14%       { transform: scale(1.2); }
+  28%       { transform: scale(1); }
+  42%       { transform: scale(1.15); }
+  56%       { transform: scale(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .dedicatoria-heart { animation: none; }
+}
+
 /* ── Playlist ── */
 .playlist {
   background: var(--surface);
@@ -431,6 +461,11 @@ input[type="range"] {
 
   <!-- Vista 1: Reproductor -->
   <div class="view active" id="viewPlayer">
+
+    <div class="dedicatoria">
+      <p class="dedicatoria-text">para ti, Mary<span class="dedicatoria-heart">&#9829;</span>hecho con mucho amor</p>
+    </div>
+
     <div class="cover-wrap">
       <img id="coverImg" class="cover-img" src="" alt="">
     </div>
@@ -535,34 +570,224 @@ input[type="range"] {
 // ═══════════════════════════════════════════════════
 //  CANCIONES — reemplaza estos datos con los tuyos
 // ═══════════════════════════════════════════════════
+const BASE = "https://raw.githubusercontent.com/Deigomanji/Deigomanji.github.io/main/";
 const songs = [
   {
     title: "Night Changes",
     artist: "One Direction",
-    src: "https://raw.githubusercontent.com/Deigomanji/Deigomanji.github.io/main/One%20Direction%20-%20Night%20Changes.mp3",
-    cover: "https://picsum.photos/seed/s1/600/600",
-    note: "Esta canción me recuerda cada vez que el tiempo parecía detenerse y todo lo que importaba cabía en un solo momento contigo."
+    src: BASE + "One%20Direction%20-%20Night%20Changes.mp3",
+    cover: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/62/2d/19/622d19da-eb88-022c-2bc5-d843657defe8/886444549851.jpg/600x600bb.jpg",
+    note: "\"We're only getting older, baby / And I've been thinking about it lately\""
   },
   {
-    title: "Nombre de la Canción 2",
-    artist: "Artista",
-    src: "URL_DEL_AUDIO_2.mp3",
-    cover: "https://picsum.photos/seed/s2/600/600",
-    note: "La escuché por primera vez y pensé en ti. Ahora ya no puedo separarlas: tu nombre y esta melodía son lo mismo."
+    title: "Tu jardín con enanitos",
+    artist: "Melendi",
+    src: BASE + "01%20Melendi%20-%20Tu%20jard%C3%ADn%20con%20enanitos.mp3",
+    cover: "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/39/9e/68/399e6848-7d05-0c93-87ff-fbf5c40109af/825646534272.jpg/600x600bb.jpg",
+    note: "\"Si hay algo que me gusta de la vida / eres tu\""
   },
   {
-    title: "Nombre de la Canción 3",
-    artist: "Artista",
-    src: "URL_DEL_AUDIO_3.mp3",
-    cover: "https://picsum.photos/seed/s3/600/600",
-    note: "Hay canciones que no se eligen, simplemente llegan. Esta llegó en el momento exacto en que más la necesitaba."
+    title: "Hey Angel",
+    artist: "One Direction",
+    src: BASE + "01%20One%20Direction%20-%20Hey%20Angel.mp3",
+    cover: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/45/ac/db/45acdb3d-1a85-52e3-43d5-195f8f58067d/mzm.qyfviqnb.jpg/600x600bb.jpg",
+    note: "\"Hey angel, do you know you have the star power?\""
   },
   {
-    title: "Nombre de la Canción 4",
-    artist: "Artista",
-    src: "URL_DEL_AUDIO_4.mp3",
-    cover: "https://picsum.photos/seed/s4/600/600",
-    note: "Guarda esta nota para recordar lo que sentiste la primera vez. Vale la pena no olvidarlo."
+    title: "La Barca",
+    artist: "Luis Miguel",
+    src: BASE + "02%20Luis%20Miguel%20-%20La%20Barca.mp3",
+    cover: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/c9/13/be/c913befa-6bd5-e076-e85f-f88d894d16ff/s06.fdrmwjrx.jpg/600x600bb.jpg",
+    note: "\"La barca que parte no vuelve a llegar\""
+  },
+  {
+    title: "Un violinista en tu tejado",
+    artist: "Melendi",
+    src: BASE + "02%20Melendi%20-%20Un%20violinista%20en%20tu%20tejado.mp3",
+    cover: "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/dd/9e/5e/dd9e5ee0-8ec3-08f3-751a-3c6366ce8683/5099923728752.jpg/600x600bb.jpg",
+    note: "\"Quiero ser el violinista en tu tejado / que te cante al amanecer\""
+  },
+  {
+    title: "Diana",
+    artist: "One Direction",
+    src: BASE + "03%20One%20Direction%20-%20Diana.mp3",
+    cover: "https://is1-ssl.mzstatic.com/image/thumb/Features125/v4/66/75/88/6675882c-3685-2b6b-f9de-c6d3e06602b5/dj.fuklqvvg.jpg/600x600bb.jpg",
+    note: "\"Let me be the one to save you\""
+  },
+  {
+    title: "Little Things",
+    artist: "One Direction",
+    src: BASE + "03%20One%20Direction%20-%20Little%20Things.mp3",
+    cover: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/49/49/8d/49498da7-d2f6-24a8-8f5c-6d76119b07e7/886443503175.jpg/600x600bb.jpg",
+    note: "\"You'll never love yourself half as much as I love you\""
+  },
+  {
+    title: "18",
+    artist: "One Direction",
+    src: BASE + "04%20One%20Direction%20-%2018.mp3",
+    cover: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/14/e4/98/14e49846-57a9-dc8d-6fa3-5e03ccf3606c/dj.ljogvxod.jpg/600x600bb.jpg",
+    note: "\"I have loved you since we were 18\""
+  },
+  {
+    title: "And I Love Her",
+    artist: "The Beatles",
+    src: BASE + "05%20The%20Beatles%20-%20And%20I%20Love%20Her%20%28Remastered%202009%29.mp3",
+    cover: "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/db/a2/7a/dba27a46-3685-508d-d32e-a0e73cc82251/00602567713296.rgb.jpg/600x600bb.jpg",
+    note: "\"She gives me everything / and tenderly\""
+  },
+  {
+    title: "Tear in My Heart",
+    artist: "Twenty One Pilots",
+    src: BASE + "05%20Twenty%20One%20Pilots%20-%20Tear%20in%20My%20Heart.mp3",
+    cover: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/8e/e2/89/8ee28904-0821-610d-5011-a61845f62756/075679926951.jpg/600x600bb.jpg",
+    note: "\"You fell asleep in my car, I drove the whole time\""
+  },
+  {
+    title: "Yellow",
+    artist: "Coldplay",
+    src: BASE + "05%20Coldplay%20-%20Yellow.mp3",
+    cover: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/f5/93/8c/f5938c49-964c-31d1-4b33-78b634f71fb7/190295978075.jpg/600x600bb.jpg",
+    note: "\"Look at the stars, look how they shine for you\""
+  },
+  {
+    title: "Perfect",
+    artist: "Ed Sheeran",
+    src: BASE + "05%20Ed%20Sheeran%20-%20Perfect.mp3",
+    cover: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/15/e6/e8/15e6e8a4-4190-6a8b-86c3-ab4a51b88288/190295851286.jpg/600x600bb.jpg",
+    note: "\"I found a love for me / darling, just dive right in\""
+  },
+  {
+    title: "Eres",
+    artist: "Café Tacvba",
+    src: BASE + "06%20Caf%C3%A9%20Tacvba%20-%20Eres.mp3",
+    cover: "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/c0/82/4e/c0824e1f-1c08-93d1-2377-8b8d13c64242/06UMGIM10078.rgb.jpg/600x600bb.jpg",
+    note: "\"Eres lo que pienso / eres todo\""
+  },
+  {
+    title: "Usted",
+    artist: "Luis Miguel",
+    src: BASE + "06%20Luis%20Miguel%20-%20Usted.mp3",
+    cover: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/c9/13/be/c913befa-6bd5-e076-e85f-f88d894d16ff/s06.fdrmwjrx.jpg/600x600bb.jpg",
+    note: "\"Usted es la culpable de todas mis angustias\""
+  },
+  {
+    title: "Don’t Forget Where You Belong",
+    artist: "One Direction",
+    src: BASE + "06%20One%20Direction%20-%20Don%20t%20Forget%20Where%20You%20Belong.mp3",
+    cover: "https://is1-ssl.mzstatic.com/image/thumb/Features125/v4/66/75/88/6675882c-3685-2b6b-f9de-c6d3e06602b5/dj.fuklqvvg.jpg/600x600bb.jpg",
+    note: "\"No matter how far we go / we always find our way back home\""
+  },
+  {
+    title: "Enamorado tuyo",
+    artist: "El Cuarteto de Nos",
+    src: BASE + "07%20El%20Cuarteto%20de%20Nos%20-%20Enamorado%20tuyo.mp3",
+    cover: "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/bd/1c/9a/bd1c9a81-cc69-3b81-0bda-0d89565aef24/825646600243.jpg/600x600bb.jpg",
+    note: "\"Estoy enamorado tuyo / me tiene loco tu amor\""
+  },
+  {
+    title: "Contigo En La Distancia",
+    artist: "Luis Miguel",
+    src: BASE + "07%20Luis%20Miguel%20-%20Contigo%20En%20La%20Distancia.mp3",
+    cover: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/c9/13/be/c913befa-6bd5-e076-e85f-f88d894d16ff/s06.fdrmwjrx.jpg/600x600bb.jpg",
+    note: "\"No existe un momento del dia en que pueda olvidarme de ti\""
+  },
+  {
+    title: "Happily",
+    artist: "One Direction",
+    src: BASE + "08%20One%20Direction%20-%20Happily.mp3",
+    cover: "https://is1-ssl.mzstatic.com/image/thumb/Features125/v4/73/f7/aa/73f7aa2b-bd94-a528-c42b-24a3e588e21b/dj.yyouuvfg.jpg/600x600bb.jpg",
+    note: "\"I don't care what people say when we're together\""
+  },
+  {
+    title: "No Control",
+    artist: "One Direction",
+    src: BASE + "08%20One%20Direction%20-%20No%20Control.mp3",
+    cover: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/14/e4/98/14e49846-57a9-dc8d-6fa3-5e03ccf3606c/dj.ljogvxod.jpg/600x600bb.jpg",
+    note: "\"Lips so good I forget my name\""
+  },
+  {
+    title: "Fireproof",
+    artist: "One Direction",
+    src: BASE + "09%20One%20Direction%20-%20Fireproof.mp3",
+    cover: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/62/2d/19/622d19da-eb88-022c-2bc5-d843657defe8/886444549851.jpg/600x600bb.jpg",
+    note: "\"I think I'm gonna win this time\""
+  },
+  {
+    title: "Olivia",
+    artist: "One Direction",
+    src: BASE + "09%20One%20Direction%20-%20Olivia.mp3",
+    cover: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/45/ac/db/45acdb3d-1a85-52e3-43d5-195f8f58067d/mzm.qyfviqnb.jpg/600x600bb.jpg",
+    note: "\"Living without you is like TV in black and white\""
+  },
+  {
+    title: "City of Stars",
+    artist: "Ryan Gosling",
+    src: BASE + "09_Ryan_Gosling_City_Of_Stars_From.mp3",
+    cover: "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/bb/47/a3/bb47a36e-57b8-9260-f9a4-d09851145c45/00602557100556.rgb.jpg/600x600bb.jpg",
+    note: "\"City of stars / are you shining just for me?\""
+  },
+  {
+    title: "Through the Dark",
+    artist: "One Direction",
+    src: BASE + "11%20One%20Direction%20-%20Through%20the%20Dark.mp3",
+    cover: "https://is1-ssl.mzstatic.com/image/thumb/Features125/v4/66/75/88/6675882c-3685-2b6b-f9de-c6d3e06602b5/dj.fuklqvvg.jpg/600x600bb.jpg",
+    note: "\"I will carry you over fire and water for your love\""
+  },
+  {
+    title: "I Want to Write You a Song",
+    artist: "One Direction",
+    src: BASE + "12%20One%20Direction%20-%20I%20Want%20to%20Write%20You%20a%20Song.mp3",
+    cover: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/45/ac/db/45acdb3d-1a85-52e3-43d5-195f8f58067d/mzm.qyfviqnb.jpg/600x600bb.jpg",
+    note: "\"I want to write you a song / one to make your heart remember me\""
+  },
+  {
+    title: "Walking in the Wind",
+    artist: "One Direction",
+    src: BASE + "15%20One%20Direction%20-%20Walking%20in%20the%20Wind.mp3",
+    cover: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/45/ac/db/45acdb3d-1a85-52e3-43d5-195f8f58067d/mzm.qyfviqnb.jpg/600x600bb.jpg",
+    note: "\"I know we'll be alright / we'll remember tonight\""
+  },
+  {
+    title: "There Is a Light That Never Goes Out",
+    artist: "The Smiths",
+    src: BASE + "15_The_Smiths_There_Is_a_Light_That.mp3",
+    cover: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/1a/e8/70/1ae870c3-b402-096b-c4c4-8022af5a2ed9/745099189662.jpg/600x600bb.jpg",
+    note: "\"To die by your side is such a heavenly way to die\""
+  },
+  {
+    title: "I Will",
+    artist: "The Beatles",
+    src: BASE + "16%20The%20Beatles%20-%20I%20Will%20%28Remastered%202009%29.mp3",
+    cover: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/fa/5b/89/fa5b898d-bad6-e053-4195-260e5c74f2bb/00602567725466.rgb.jpg/600x600bb.jpg",
+    note: "\"Love you forever and forever / love you with all my heart\""
+  },
+  {
+    title: "You & I",
+    artist: "One Direction",
+    src: BASE + "One%20Direction%20-%20You%20%20%20I.mp3",
+    cover: "https://is1-ssl.mzstatic.com/image/thumb/Features125/v4/66/75/88/6675882c-3685-2b6b-f9de-c6d3e06602b5/dj.fuklqvvg.jpg/600x600bb.jpg",
+    note: "\"We are who we are when no one's watching\""
+  },
+  {
+    title: "Late Night Talking",
+    artist: "Harry Styles",
+    src: BASE + "Harry%20Styles%20-%20Late%20Night%20Talking.mp3",
+    cover: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/2a/19/fb/2a19fb85-2f70-9e44-f2a9-82abe679b88e/886449990061.jpg/600x600bb.jpg",
+    note: "\"We've been doing all this late night talking\""
+  },
+  {
+    title: "Wonderwall",
+    artist: "Oasis",
+    src: BASE + "Oasis%20-%20Wonderwall.mp3",
+    cover: "https://is1-ssl.mzstatic.com/image/thumb/Music113/v4/04/92/e0/0492e08b-cbcc-9969-9ad6-8f5a0888068c/5051961007107.jpg/600x600bb.jpg",
+    note: "\"And all the roads we have to walk are winding\""
+  },
+  {
+    title: "From The Start",
+    artist: "Laufey",
+    src: BASE + "Laufey%20-%20From%20The%20Start.mp3",
+    cover: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/8b/8b/20/8b8b2083-c8a3-a1a6-1f9e-a4da5bf45d5d/197188679637.jpg/600x600bb.jpg",
+    note: "\"Maybe I loved you from the start\""
   }
 ];
 // ═══════════════════════════════════════════════════
